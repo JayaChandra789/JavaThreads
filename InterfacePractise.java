@@ -1,66 +1,51 @@
 package oopsExamples;
-interface Movies  /*InterFace only*/
-{
-	public void displayListOfMovies(); /*1st INTERFACE*/
-
-	public void selectMovie(); /*2nd INTERFACE*/
+/*Write a program to create an interface with name 
+ *ThreeDFigure having three methods to calculate curvedSurface area, total surface area ,volume.
+  Implement the interface on Cylinder class*/
+interface  ThreeDfigure /*InterFace Interface is also used to overcome multiple inheritance 
+coz u can use multiples classes with single interface class
+Means many multiple derived classes inherits properties from single interface class*/
+{ //Interfaces just show what it is(BluePrint) But not show complete implementation...
+	void calCurvedSurfaceArea(); //Initiating 3 methods
+	void caltotalSurfaceArea();
+	void calculateVolume();
 }
-class Genere implements Movies /*Implement or use all methods That are declared in INTERFACE*/
+class Cylinder implements ThreeDfigure //Implementation starts from Here...
 {
-	public void selectGenre()
+	double radius,height,volume; //Declaring variables
+	Cylinder(double radius, double height) //Parameterised Constructor for cal given radius & height for 3Methods below
 	{
-		System.out.println("Horror,Thriller,Action,Adventure,Comedy");
-		System.out.println();
-	}
-	public void displayListOfMovies() /*Implementing 1st INTERFACE*/
-	{
-		System.out.println("Devara,Pushpa-2,GameChanger,Vikram-2,HIT-case:3");
-		System.out.println();
+		this.radius = radius;
+		this.height = height;
+		System.out.println("Radius: " + radius);
+		System.out.println("Height: " + height);
 	}
 	@Override
-	public void selectMovie()  /*Implementing 2nd INTERFACE*/
-	{		
-		System.out.print("Devara Selected." );
-		System.out.println();
-	}
-}
-class TopRated implements Movies /*Implement or use all methods That declared in INTERFACE*/
-{
-	public void selectGenre()
+	public void caltotalSurfaceArea() //Method
 	{
-		System.out.println();
-		System.out.println("TopRated Movies");
-		System.out.println();
-		System.out.println("Horror,Thriller,Action,Adventure,Comedy");
-		System.out.println();
-	}
-	public void displayListOfMovies() /*Implementing 1st INTERFACE*/
-	{
-		System.out.println("Devara,Pushpa-2,GameChanger,Vikram-2,HIT-case:3");
-		System.out.println();
+		double  totalSurfaceArea = 2 * 3.1415 * radius * (radius + height); // Store result in an instance variable
+		System.out.println("Total Surface Area: " + totalSurfaceArea);
 	}
 	@Override
-	public void selectMovie() /*Implementing 2nd INTERFACE*/
-	{		
-		System.out.print("Devara Selected." );
-		System.out.println();
+	public void calculateVolume() //Method
+	{
+		double volume = 3.1415 * radius * radius * height; // Store result in an instance variable
+		System.out.println("Volume: " + volume);
+	}
+	@Override
+	public void calCurvedSurfaceArea() //Method
+	{
+		double curvedSurfaceArea = 2 * 3.1415 * radius * height; // Stores the result in an instance variable
+		System.out.println("Curved Surface Area: " + curvedSurfaceArea);
 	}
 }
-public class InterfacePractise 
+public class InterFaceExample 
 {
 	public static void main(String[] args) 
 	{
-		/*For every different class there is diff object is created*/
-		/*1st object for 1st class*/
-		Genere movieObj = new Genere();
-		movieObj.selectGenre();
-		movieObj.displayListOfMovies();
-		movieObj.selectMovie();
-		
-		/*2nd object for 2nd class*/
-		TopRated movieObj1 = new TopRated();
-		movieObj1.selectGenre();
-		movieObj1.displayListOfMovies();
-		movieObj1.selectMovie();
+		Cylinder calobj = new Cylinder(5,10);
+		calobj.calCurvedSurfaceArea();
+		calobj.caltotalSurfaceArea();
+		calobj.calculateVolume();
 	}
 }
